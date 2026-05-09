@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ziad Anter — Web Design Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060A0F;--surface:#0C1219;--card:#0F1724;--border:rgba(255,255,255,0.07);
+  --accent:#00E5FF;--accent2:#7C3AED;--accent3:#F59E0B;--green:#10B981;
+  --text:#EDF2FF;--muted:#64748B;--glow:0 0 60px rgba(0,229,255,0.12);
+  --nav-bg:rgba(6,10,15,0.88);
+}
+[data-theme="light"]{
+  --bg:#F0F4FF;--surface:#E2E8F8;--card:#FFFFFF;--border:rgba(0,0,0,0.08);
+  --accent:#0077CC;--accent2:#6D28D9;--accent3:#D97706;--green:#059669;
+  --text:#0F172A;--muted:#64748B;--glow:0 0 60px rgba(0,119,204,0.1);
+  --nav-bg:rgba(240,244,255,0.92);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;cursor:none;transition:background .4s,color .4s;}
+body.ar,body.ar *{font-family:'Cairo',sans-serif !important;}
+.cursor{width:10px;height:10px;background:var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s;mix-blend-mode:difference;}
+.cursor-ring{width:36px;height:36px;border:1.5px solid rgba(0,229,255,0.45);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.35;pointer-events:none;z-index:1;}
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,229,255,0.022) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.022) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;}
+.orb{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0;}
+.o1{width:650px;height:650px;background:#7C3AED;top:-200px;left:-180px;opacity:.09;}
+.o2{width:500px;height:500px;background:#00E5FF;bottom:0;right:-120px;opacity:.07;}
+.o3{width:280px;height:280px;background:#F59E0B;top:55%;left:38%;opacity:.05;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 40px;display:flex;justify-content:space-between;align-items:center;background:var(--nav-bg);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:background .4s;}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--text);}
+.nav-logo span{color:var(--accent);}
+.nav-links{display:flex;gap:2px;}
+.nav-btn{background:none;border:none;padding:7px 13px;border-radius:8px;color:var(--muted);font-size:.82rem;font-family:inherit;cursor:none;transition:all .2s;}
+.nav-btn:hover{color:var(--text);background:rgba(255,255,255,0.05);}
+.nav-right{display:flex;align-items:center;gap:8px;}
+.toggle-pill{display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:100px;border:1px solid var(--border);background:var(--card);color:var(--muted);font-size:.78rem;font-family:inherit;cursor:none;transition:all .2s;white-space:nowrap;}
+.toggle-pill:hover{border-color:var(--accent);color:var(--accent);}
+.toggle-pill svg{width:13px;height:13px;}
+.nav-count{font-family:'Syne',sans-serif;font-size:.8rem;color:var(--accent);background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.2);padding:7px 14px;border-radius:100px;}
+
+/* HERO */
+.hero{position:relative;z-index:2;padding:140px 40px 70px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center;}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;color:var(--green);letter-spacing:.15em;text-transform:uppercase;margin-bottom:22px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.25);padding:6px 14px;border-radius:100px;}
+.badge-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+h1.hero-title{font-family:'Syne',sans-serif;font-size:clamp(2.8rem,5vw,4.8rem);font-weight:800;line-height:.97;letter-spacing:-.03em;margin-bottom:22px;}
+h1.hero-title .outline{color:transparent;-webkit-text-stroke:1.5px var(--accent);}
+.hero-sub{font-size:1rem;color:var(--muted);line-height:1.85;font-weight:300;margin-bottom:32px;max-width:440px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-main{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:var(--accent);color:#000;font-weight:700;font-size:.9rem;border-radius:10px;text-decoration:none;font-family:inherit;cursor:none;border:none;transition:all .25s;}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,229,255,0.3);}
+[data-theme="light"] .btn-main:hover{box-shadow:0 12px 40px rgba(0,119,204,0.3);}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:transparent;color:var(--text);font-size:.9rem;border-radius:10px;text-decoration:none;font-family:inherit;cursor:none;border:1px solid var(--border);transition:all .25s;}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+.hero-cards{display:flex;flex-direction:column;gap:14px;}
+.mini-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;transition:transform .3s,border-color .3s;}
+.mini-card:hover{transform:translateX(-5px);border-color:var(--border2,rgba(0,229,255,0.2));}
+.mini-icon{font-size:1.3rem;margin-bottom:10px;}
+.mini-card h3{font-family:'Syne',sans-serif;font-size:.92rem;font-weight:700;margin-bottom:5px;}
+.mini-card p{font-size:.78rem;color:var(--muted);line-height:1.6;}
+
+/* STATS */
+.stats-row{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;max-width:1120px;margin:0 auto 80px;margin-left:40px;margin-right:40px;}
+.stat{background:var(--surface);padding:32px;transition:background .3s;}
+.stat:hover{background:var(--card);}
+.stat-n{font-family:'Syne',sans-serif;font-size:2.8rem;font-weight:800;color:var(--accent);line-height:1;margin-bottom:5px;}
+.stat-l{font-size:.75rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;}
+
+/* SECTION */
+.sec{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:0 40px 80px;}
+.sec-tag{display:flex;align-items:center;gap:10px;font-size:.7rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;}
+.sec-tag::before{content:'';width:28px;height:1px;background:var(--accent);}
+body.ar .sec-tag::before{display:none;}
+body.ar .sec-tag::after{content:'';width:28px;height:1px;background:var(--accent);}
+.sec-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:800;letter-spacing:-.02em;margin-bottom:10px;}
+.sec-desc{color:var(--muted);font-size:.93rem;line-height:1.8;max-width:540px;font-weight:300;margin-bottom:44px;}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:start;}
+.about-p{font-size:.93rem;color:var(--muted);line-height:1.9;margin-bottom:14px;font-weight:300;}
+.about-p strong{color:var(--text);font-weight:600;}
+.services-wrap{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:24px;}
+.stag{display:flex;align-items:center;gap:8px;font-size:.8rem;padding:9px 13px;background:var(--card);border:1px solid var(--border);border-radius:9px;transition:all .2s;}
+.stag:hover{border-color:var(--accent);color:var(--accent);}
+.stag::before{content:'→';color:var(--accent);font-size:.72rem;flex-shrink:0;}
+body.ar .stag::before{content:'←';}
+.why-box{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:28px;}
+.why-title{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:var(--accent);margin-bottom:18px;}
+.why-item{display:flex;align-items:flex-start;gap:10px;font-size:.83rem;padding:10px 0;border-bottom:1px solid var(--border);}
+.why-item:last-child{border-bottom:none;}
+.why-check{color:var(--green);font-size:.9rem;margin-top:1px;flex-shrink:0;}
+
+/* FEATURES */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.feat-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;transition:all .3s;position:relative;overflow:hidden;}
+.feat-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,229,255,0.04),transparent);opacity:0;transition:opacity .3s;}
+.feat-card:hover{border-color:rgba(0,229,255,0.3);transform:translateY(-4px);box-shadow:var(--glow);}
+.feat-card:hover::after{opacity:1;}
+.feat-icon{width:46px;height:46px;border-radius:12px;background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.18);display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:1.3rem;}
+.feat-card h3{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:7px;}
+.feat-card p{font-size:.8rem;color:var(--muted);line-height:1.65;}
+
+/* OFFERS */
+.offers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.offer-card{border-radius:20px;padding:32px;border:1px solid var(--border);background:var(--card);position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s;}
+.offer-card.hot{border-color:var(--accent);background:linear-gradient(135deg,rgba(0,229,255,0.06),var(--card));}
+.offer-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.25);}
+.hot-badge{position:absolute;top:18px;right:18px;font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:100px;background:var(--accent);color:#000;}
+body.ar .hot-badge{right:auto;left:18px;}
+.offer-emoji{font-size:2rem;margin-bottom:14px;}
+.offer-card h3{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:800;margin-bottom:6px;}
+.offer-sub{font-size:.8rem;color:var(--muted);margin-bottom:22px;line-height:1.6;}
+.offer-list{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:26px;}
+.offer-list li{display:flex;align-items:center;gap:9px;font-size:.82rem;color:var(--muted);}
+.offer-list li::before{content:'✓';color:var(--green);font-weight:700;font-size:.75rem;width:18px;height:18px;border-radius:50%;background:rgba(16,185,129,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.offer-cta-main{display:block;text-align:center;padding:12px;border-radius:10px;font-size:.87rem;font-weight:700;text-decoration:none;background:var(--accent);color:#000;cursor:none;border:none;font-family:inherit;transition:all .2s;width:100%;}
+.offer-cta-main:hover{box-shadow:0 8px 30px rgba(0,229,255,0.35);transform:translateY(-1px);}
+.offer-cta-ghost{display:block;text-align:center;padding:12px;border-radius:10px;font-size:.87rem;font-weight:600;text-decoration:none;background:transparent;color:var(--text);cursor:none;border:1px solid var(--border);font-family:inherit;transition:all .2s;width:100%;}
+.offer-cta-ghost:hover{border-color:var(--accent);color:var(--accent);}
+.bundle-note{margin-top:24px;padding:16px 20px;background:var(--card);border:1px solid var(--border);border-radius:12px;font-size:.82rem;color:var(--muted);text-align:center;line-height:1.7;}
+.bundle-note strong{color:var(--accent3);}
+
+/* WORK */
+.work-bar{display:flex;gap:10px;align-items:center;margin-bottom:24px;flex-wrap:wrap;}
+.filt{padding:7px 18px;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:inherit;font-size:.8rem;cursor:none;transition:all .2s;}
+.filt:hover,.filt.on{background:rgba(0,229,255,0.1);border-color:var(--accent);color:var(--accent);}
+[data-theme="light"] .filt:hover,[data-theme="light"] .filt.on{background:rgba(0,119,204,0.1);}
+.s-wrap{position:relative;flex:1;max-width:260px;}
+.s-inp{width:100%;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px 9px 38px;color:var(--text);font-family:inherit;font-size:.83rem;outline:none;transition:border-color .2s;}
+.s-inp:focus{border-color:rgba(0,229,255,0.45);}
+.s-inp::placeholder{color:var(--muted);}
+.s-ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:transform .3s cubic-bezier(.34,1.56,.64,1),border-color .3s,box-shadow .3s;cursor:none;}
+.card:hover{transform:translateY(-6px);border-color:rgba(0,229,255,0.3);box-shadow:0 20px 60px rgba(0,0,0,.3),var(--glow);}
+.card-prev{position:relative;height:185px;overflow:hidden;background:var(--surface);}
+.card-prev iframe{width:200%;height:200%;transform:scale(.5);transform-origin:top left;border:none;pointer-events:none;}
+.card-prev-ov{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,var(--card));}
+.card-lbl{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.65);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.08);border-radius:5px;padding:3px 9px;font-size:.65rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;}
+.card-body{padding:16px 20px 20px;}
+.card-cat{font-size:.67rem;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:5px;}
+.card-title{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:5px;}
+.card-desc{font-size:.78rem;color:var(--muted);line-height:1.65;margin-bottom:16px;font-weight:300;}
+.card-foot{display:flex;align-items:center;justify-content:space-between;}
+.card-link{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:600;color:var(--accent);text-decoration:none;padding:7px 14px;border:1px solid rgba(0,229,255,0.22);border-radius:8px;background:rgba(0,229,255,0.06);transition:all .2s;cursor:none;}
+.card-link:hover{background:rgba(0,229,255,0.14);border-color:var(--accent);gap:10px;}
+.card-link svg{transition:transform .2s;}
+.card-link:hover svg{transform:translate(2px,-2px);}
+.card-num{font-family:'Syne',sans-serif;font-size:.7rem;color:rgba(255,255,255,0.1);font-weight:700;}
+[data-theme="light"] .card-num{color:rgba(0,0,0,0.12);}
+.no-res{grid-column:1/-1;text-align:center;padding:60px;color:var(--muted);}
+.hidden{display:none!important;}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;}
+.c-item{display:flex;align-items:center;gap:14px;padding:18px;background:var(--card);border:1px solid var(--border);border-radius:14px;text-decoration:none;color:var(--text);cursor:none;transition:all .25s;margin-bottom:12px;}
+.c-item:hover{border-color:var(--accent);transform:translateX(4px);}
+body.ar .c-item:hover{transform:translateX(-4px);}
+.c-ico{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.2rem;}
+.c-item small{display:block;font-size:.68rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px;}
+.c-item strong{font-size:.9rem;font-weight:500;}
+.resp-row{display:flex;gap:12px;margin-top:4px;}
+.resp-box{flex:1;text-align:center;padding:14px;background:var(--card);border:1px solid var(--border);border-radius:10px;}
+.resp-n{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:var(--accent);}
+.resp-l{font-size:.68rem;color:var(--muted);}
+.cf{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:12px;}
+.cf h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:2px;}
+.cf p{font-size:.8rem;color:var(--muted);margin-bottom:6px;}
+.ff{display:flex;flex-direction:column;gap:5px;}
+.ff label{font-size:.75rem;color:var(--muted);}
+.ff input,.ff textarea,.ff select{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:10px 13px;color:var(--text);font-family:inherit;font-size:.86rem;outline:none;transition:border-color .2s;resize:none;width:100%;}
+.ff input:focus,.ff textarea:focus,.ff select:focus{border-color:rgba(0,229,255,0.45);}
+.ff select option{background:var(--card);}
+.cf-submit{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px;background:var(--accent);color:#000;font-weight:700;font-size:.88rem;border-radius:10px;border:none;font-family:inherit;cursor:none;transition:all .25s;width:100%;}
+.cf-submit:hover{box-shadow:0 10px 35px rgba(0,229,255,0.3);transform:translateY(-2px);}
+
+/* FOOTER */
+footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:28px 40px;display:flex;justify-content:space-between;align-items:center;}
+.foot-txt{font-size:.78rem;color:var(--muted);}
+.foot-txt span{color:var(--accent);}
+.foot-links{display:flex;gap:18px;}
+.foot-links a{font-size:.78rem;color:var(--muted);text-decoration:none;cursor:none;transition:color .2s;}
+.foot-links a:hover{color:var(--accent);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+.fu{opacity:0;}
+.fu.in{animation:fadeUp .65s ease forwards;}
+
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding-top:120px;gap:0;}
+  .hero-cards{display:none;}
+  .about-grid,.contact-grid{grid-template-columns:1fr;}
+  .feat-grid{grid-template-columns:1fr 1fr;}
+  .offers-grid{grid-template-columns:1fr;}
+  .stats-row{grid-template-columns:1fr 1fr;margin-left:20px;margin-right:20px;}
+}
+@media(max-width:600px){
+  nav{padding:12px 18px;}
+  .nav-links{display:none;}
+  .hero,.sec{padding-left:18px;padding-right:18px;}
+  .hero{padding-top:110px;}
+  .feat-grid,.services-wrap{grid-template-columns:1fr;}
+  .grid{grid-template-columns:1fr;}
+  .stats-row{grid-template-columns:1fr 1fr;margin-left:18px;margin-right:18px;}
+  footer{flex-direction:column;gap:10px;text-align:center;padding:22px 18px;}
+  h1.hero-title{font-size:2.6rem;}
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="curR"></div>
+<div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Ziad<span>.</span>Anter</div>
+  <div class="nav-links">
+    <button class="nav-btn" onclick="goto('about')" data-en="About" data-ar="عني">About</button>
+    <button class="nav-btn" onclick="goto('features')" data-en="Features" data-ar="المميزات">Features</button>
+    <button class="nav-btn" onclick="goto('offers')" data-en="Offers" data-ar="العروض">Offers</button>
+    <button class="nav-btn" onclick="goto('work')" data-en="Work" data-ar="أعمالي">Work</button>
+    <button class="nav-btn" onclick="goto('contact')" data-en="Contact" data-ar="تواصل">Contact</button>
+  </div>
+  <div class="nav-right">
+    <button class="toggle-pill" onclick="toggleLang()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg>
+      <span id="langLbl">عربي</span>
+    </button>
+    <button class="toggle-pill" onclick="toggleTheme()">
+      <svg id="thIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <span id="thLbl">Light</span>
+    </button>
+    <div class="nav-count" id="navCnt">21 Projects</div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero fu" id="heroSec">
+  <div>
+    <div class="badge"><span class="badge-dot"></span><span data-en="Available for new projects" data-ar="متاح لمشاريع جديدة">Available for new projects</span></div>
+    <h1 class="hero-title">
+      <span data-en="Building" data-ar="أبني">Building</span><br>
+      <span class="outline" data-en="Digital" data-ar="تجارب">Digital</span><br>
+      <span data-en="Experiences" data-ar="رقمية">Experiences</span>
+    </h1>
+    <p class="hero-sub" data-en="Hi, I'm Ziad Anter — a creative web designer &amp; developer specialized in building modern, fast, and professional websites that help brands, businesses, and creators stand out online." data-ar="مرحباً، أنا زياد عنتر — مصمم ومطور مواقع متخصص في بناء مواقع عصرية وسريعة ومحترفة تساعد العلامات التجارية والشركات والمبدعين على التميز.">Hi, I'm Ziad Anter — a creative web designer &amp; developer specialized in building modern, fast, and professional websites that help brands, businesses, and creators stand out online.</p>
+    <div class="hero-btns">
+      <a href="#work" class="btn-main" data-en="View My Work →" data-ar="شوف أعمالي ←">View My Work →</a>
+      <a href="#contact" class="btn-ghost" data-en="Get in Touch" data-ar="تواصل معي">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-cards">
+    <div class="mini-card" style="border-color:rgba(0,229,255,0.2)">
+      <div class="mini-icon">⚡</div>
+      <h3 data-en="Fast Delivery" data-ar="تسليم سريع">Fast Delivery</h3>
+      <p data-en="Most projects delivered within 24–72 hours." data-ar="معظم المشاريع تُسلَّم خلال 24–72 ساعة.">Most projects delivered within 24–72 hours.</p>
+    </div>
+    <div class="mini-card" style="border-color:rgba(124,58,237,0.25)">
+      <div class="mini-icon">🎨</div>
+      <h3 data-en="100% Custom Design" data-ar="تصميم 100% مخصص">100% Custom Design</h3>
+      <p data-en="No templates. Every site built from scratch with clean code." data-ar="بدون قوالب. كل موقع مبني من الصفر بكود نظيف.">No templates. Every site built from scratch with clean code.</p>
+    </div>
+    <div class="mini-card" style="border-color:rgba(16,185,129,0.2)">
+      <div class="mini-icon">🌍</div>
+      <h3 data-en="Multi-language Ready" data-ar="دعم متعدد اللغات">Multi-language Ready</h3>
+      <p data-en="Arabic, English &amp; more — with full RTL support." data-ar="عربي وإنجليزي وأكثر — مع دعم كامل من اليمين لليسار.">Arabic, English &amp; more — with full RTL support.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-row fu" style="max-width:1120px;">
+  <div class="stat"><div class="stat-n">21+</div><div class="stat-l" data-en="Projects Built" data-ar="مشاريع منفذة">Projects Built</div></div>
+  <div class="stat"><div class="stat-n">100%</div><div class="stat-l" data-en="Custom Code" data-ar="كود مخصص">Custom Code</div></div>
+  <div class="stat"><div class="stat-n">5★</div><div class="stat-l" data-en="Client Rating" data-ar="تقييم العملاء">Client Rating</div></div>
+  <div class="stat"><div class="stat-n">48h</div><div class="stat-l" data-en="Avg. Delivery" data-ar="متوسط التسليم">Avg. Delivery</div></div>
+</div>
+
+<!-- ABOUT -->
+<section class="sec fu" id="about">
+  <div class="sec-tag" data-en="Who I Am" data-ar="من أنا">Who I Am</div>
+  <div class="sec-title" data-en="About Me" data-ar="عني">About Me</div>
+  <div class="about-grid">
+    <div>
+      <p class="about-p" data-en="&lt;strong&gt;Hi, I'm Ziad Anter&lt;/strong&gt; — a creative web designer and developer specialized in building modern, fast, and professional websites. I create websites that combine clean design, smooth performance, responsive layouts, and smart user experience to help brands, businesses, and creators stand out online." data-ar="&lt;strong&gt;مرحباً، أنا زياد عنتر&lt;/strong&gt; — مصمم ومطور مواقع متخصص في بناء مواقع عصرية وسريعة ومحترفة. أصمم مواقع تجمع بين التصميم النظيف والأداء السلس والاستجابة الكاملة وتجربة مستخدم ذكية.">&lt;strong&gt;Hi, I'm Ziad Anter&lt;/strong&gt; — a creative web designer and developer specialized in building modern, fast, and professional websites. I create websites that combine clean design, smooth performance, responsive layouts, and smart user experience to help brands, businesses, and creators stand out online.</p>
+      <p class="about-p" data-en="I work on a wide range of web projects — from simple landing pages to full interactive platforms — always with attention to detail, performance, and clean code." data-ar="أعمل على مجموعة واسعة من مشاريع الويب — من الصفحات البسيطة إلى المنصات التفاعلية الكاملة — دائماً مع الاهتمام بالتفاصيل والأداء والكود النظيف.">I work on a wide range of web projects — from simple landing pages to full interactive platforms — always with attention to detail, performance, and clean code.</p>
+      <div class="services-wrap" id="servicesWrap"></div>
+    </div>
+    <div>
+      <div class="why-box">
+        <div class="why-title" data-en="Why Work With Me?" data-ar="لماذا تعمل معي؟">Why Work With Me?</div>
+        <div id="whyList"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="sec fu" id="features">
+  <div class="sec-tag" data-en="What I Deliver" data-ar="ما أقدمه">What I Deliver</div>
+  <div class="sec-title" data-en="Key Features" data-ar="المميزات الرئيسية">Key Features</div>
+  <p class="sec-desc" data-en="Every website I build comes with these core qualities — no extra charge, no compromise." data-ar="كل موقع أبنيه يأتي بهذه المميزات الأساسية — بدون تكلفة إضافية وبدون تنازلات.">Every website I build comes with these core qualities — no extra charge, no compromise.</p>
+  <div class="feat-grid" id="featGrid"></div>
+</section>
+
+<!-- OFFERS -->
+<section class="sec fu" id="offers">
+  <div class="sec-tag" data-en="Pricing & Deals" data-ar="الأسعار والعروض">Pricing &amp; Deals</div>
+  <div class="sec-title" data-en="Special Offers" data-ar="عروض خاصة">Special Offers</div>
+  <p class="sec-desc" data-en="Flexible deals for every type of project. The more you build, the more you save." data-ar="عروض مرنة لكل نوع من المشاريع. كلما بنيت أكثر، وفّرت أكثر.">Flexible deals for every type of project. The more you build, the more you save.</p>
+  <div class="offers-grid" id="offersGrid"></div>
+  <div class="bundle-note" id="bundleNote"></div>
+</section>
+
+<!-- WORK -->
+<section class="sec fu" id="work">
+  <div class="sec-tag" data-en="Portfolio" data-ar="أعمالي">Portfolio</div>
+  <div class="sec-title" data-en="My Work" data-ar="مشاريعي">My Work</div>
+  <p class="sec-desc" data-en="Real projects, live on the web. Click any card to visit the live site." data-ar="مشاريع حقيقية وحية على الإنترنت. اضغط على أي بطاقة لزيارة الموقع.">Real projects, live on the web. Click any card to visit the live site.</p>
+  <div class="work-bar">
+    <button class="filt on" data-f="all" data-en="All" data-ar="الكل">All</button>
+    <button class="filt" data-f="ai" data-en="AI & Tech" data-ar="AI والتقنية">AI &amp; Tech</button>
+    <button class="filt" data-f="business" data-en="Business" data-ar="الأعمال">Business</button>
+    <button class="filt" data-f="creative" data-en="Creative" data-ar="إبداعي">Creative</button>
+    <button class="filt" data-f="education" data-en="Education" data-ar="تعليمي">Education</button>
+    <div class="s-wrap">
+      <span class="s-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+      <input class="s-inp" type="text" id="sInp" placeholder="Search projects...">
+    </div>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec fu" id="contact">
+  <div class="sec-tag" data-en="Let's Talk" data-ar="لنتحدث">Let's Talk</div>
+  <div class="sec-title" data-en="Get in Touch" data-ar="تواصل معي">Get in Touch</div>
+  <p class="sec-desc" data-en="Ready to build something great? Reach out and let's discuss your project." data-ar="جاهز لبناء شيء رائع؟ تواصل معي ونناقش مشروعك.">Ready to build something great? Reach out and let's discuss your project.</p>
+  <div class="contact-grid">
+    <div>
+      <a class="c-item" href="mailto:ziadanter101@gmail.com">
+        <div class="c-ico" style="background:rgba(0,229,255,0.1)">✉️</div>
+        <div><small data-en="Email" data-ar="البريد الإلكتروني">Email</small><strong>ziadanter101@gmail.com</strong></div>
+      </a>
+      <a class="c-item" href="https://wa.me/201030718566" target="_blank">
+        <div class="c-ico" style="background:rgba(16,185,129,0.1)">💬</div>
+        <div><small data-en="WhatsApp" data-ar="واتساب">WhatsApp</small><strong>+20 103 071 8566</strong></div>
+      </a>
+      <div class="c-item" style="cursor:default;flex-direction:column;align-items:flex-start;gap:10px;">
+        <small data-en="Average Response Time" data-ar="متوسط وقت الاستجابة">Average Response Time</small>
+        <div class="resp-row" style="width:100%">
+          <div class="resp-box"><div class="resp-n">≤2h</div><div class="resp-l">WhatsApp</div></div>
+          <div class="resp-box"><div class="resp-n">≤24h</div><div class="resp-l" data-en="Email" data-ar="إيميل">Email</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="cf">
+      <h3 data-en="Quick Inquiry" data-ar="استفسار سريع">Quick Inquiry</h3>
+      <p data-en="Fill in the details and I'll get back to you ASAP." data-ar="أكمل البيانات وسأرد عليك في أقرب وقت.">Fill in the details and I'll get back to you ASAP.</p>
+      <div class="ff"><label data-en="Your Name" data-ar="اسمك">Your Name</label><input type="text" id="fn" placeholder="Your name..."></div>
+      <div class="ff">
+        <label data-en="Project Type" data-ar="نوع المشروع">Project Type</label>
+        <select id="ft" id="ftype">
+          <option data-en="Portfolio Website" data-ar="موقع بورتفوليو">Portfolio Website</option>
+          <option data-en="Business Website" data-ar="موقع أعمال">Business Website</option>
+          <option data-en="Landing Page" data-ar="صفحة هبوط">Landing Page</option>
+          <option data-en="Educational Platform" data-ar="منصة تعليمية">Educational Platform</option>
+          <option data-en="AI / Tech Website" data-ar="موقع AI وتقنية">AI / Tech Website</option>
+          <option data-en="Multiple Projects (Bundle)" data-ar="أكثر من مشروع (باقة)">Multiple Projects (Bundle)</option>
+          <option data-en="Other" data-ar="أخرى">Other</option>
+        </select>
+      </div>
+      <div class="ff"><label data-en="Message" data-ar="رسالتك">Message</label><textarea rows="4" id="fm" placeholder="Tell me about your project..."></textarea></div>
+      <button class="cf-submit" onclick="sendWA()"><span data-en="Send via WhatsApp 💬" data-ar="أرسل عبر واتساب 💬">Send via WhatsApp 💬</span></button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="foot-txt">© 2025 <span>Ziad Anter</span> — <span data-en="All Rights Reserved" data-ar="جميع الحقوق محفوظة">All Rights Reserved</span></p>
+  <div class="foot-links">
+    <a href="mailto:ziadanter101@gmail.com">Email</a>
+    <a href="https://wa.me/201030718566" target="_blank">WhatsApp</a>
+  </div>
+</footer>
+
+<script>
+/* ===== DATA ===== */
+const LANG = {
+  services:[
+    {en:"Portfolio Websites",ar:"مواقع بورتفوليو"},
+    {en:"Business Websites",ar:"مواقع الأعمال"},
+    {en:"AI & Tech Websites",ar:"مواقع AI والتقنية"},
+    {en:"Educational Platforms",ar:"منصات تعليمية"},
+    {en:"Landing Pages",ar:"صفحات هبوط"},
+    {en:"Dark / Light Mode",ar:"وضع داكن / فاتح"},
+    {en:"Multi-language Sites",ar:"مواقع متعددة اللغات"},
+    {en:"Interactive & Creative",ar:"مواقع إبداعية تفاعلية"}
+  ],
+  why:[
+    {en:"Modern & Professional Design",ar:"تصميم عصري واحترافي"},
+    {en:"Fast Loading Speed",ar:"سرعة تحميل فائقة"},
+    {en:"Mobile & Tablet Responsive",ar:"متجاوب مع الجوال والتابلت"},
+    {en:"Clean UI/UX Experience",ar:"تجربة مستخدم سهلة وجميلة"},
+    {en:"SEO Friendly Structure",ar:"هيكل محسّن لمحركات البحث"},
+    {en:"Smooth Animations & Effects",ar:"انيميشن وتأثيرات سلسة"},
+    {en:"High Quality Code",ar:"كود عالي الجودة"},
+    {en:"Free Minor Edits After Delivery",ar:"تعديلات مجانية بعد التسليم"},
+    {en:"Fast Delivery Time",ar:"وقت تسليم سريع"}
+  ],
+  features:[
+    {icon:"🎨",en_h:"Modern & Professional Design",ar_h:"تصميم عصري احترافي",en_p:"Every website is crafted with a unique, on-brand aesthetic — no generic templates.",ar_p:"كل موقع مصمم بشكل فريد يعكس هوية علامتك التجارية — لا قوالب جاهزة."},
+    {icon:"⚡",en_h:"Fast Loading Speed",ar_h:"سرعة تحميل عالية",en_p:"Optimized code and assets ensure blazing-fast performance on all devices.",ar_p:"كود وملفات محسّنة لضمان أداء فائق السرعة على جميع الأجهزة."},
+    {icon:"📱",en_h:"Mobile & Tablet Responsive",ar_h:"متجاوب مع كل الأجهزة",en_p:"Pixel-perfect layouts on every screen size — mobile, tablet, and desktop.",ar_p:"تصميم متكامل على كل الشاشات — جوال وتابلت وسطح المكتب."},
+    {icon:"✨",en_h:"Smooth Animations & Effects",ar_h:"انيميشن وتأثيرات سلسة",en_p:"Micro-interactions, scroll effects, and transitions that delight without distracting.",ar_p:"تفاعلات دقيقة وتأثيرات تمرير وانتقالات تبهج المستخدم دون إزعاج."},
+    {icon:"🔍",en_h:"SEO Friendly Structure",ar_h:"هيكل محسّن للسيو",en_p:"Semantic HTML, clean code, and proper meta tags to boost your search visibility.",ar_p:"HTML دلالي وكود نظيف وعلامات meta صحيحة لتحسين ظهورك في البحث."},
+    {icon:"🌍",en_h:"Multi-language & RTL Support",ar_h:"متعدد اللغات ودعم RTL",en_p:"Arabic, English, and more — with full right-to-left layout support built in.",ar_p:"عربي وإنجليزي وأكثر — مع دعم كامل للتخطيط من اليمين لليسار."},
+    {icon:"🌙",en_h:"Dark / Light Mode",ar_h:"الوضع الداكن والفاتح",en_p:"Both modes designed from scratch — not just a color inversion.",ar_p:"كلا الوضعين مصمّمان من الصفر — وليس مجرد عكس للألوان."},
+    {icon:"🧹",en_h:"Clean & Maintainable Code",ar_h:"كود نظيف وقابل للصيانة",en_p:"Well-structured, commented, and scalable code for easy future updates.",ar_p:"كود منظم ومعلّق وقابل للتوسعة لسهولة التحديثات المستقبلية."},
+    {icon:"🎁",en_h:"Free Minor Edits After Delivery",ar_h:"تعديلات مجانية بعد التسليم",en_p:"Small tweaks and corrections after delivery at no additional cost.",ar_p:"تعديلات وإصلاحات صغيرة بعد التسليم بدون تكلفة إضافية."}
+  ],
+  offers:[
+    {
+      emoji:"🚀",hot:false,
+      en_h:"Single Project",ar_h:"مشروع واحد",
+      en_sub:"Perfect for startups & individuals",ar_sub:"مثالي للشركات الناشئة والأفراد",
+      items_en:["1 custom website","Mobile responsive","Dark/Light mode","SEO optimized","Free minor edits","Delivered in 24–72h"],
+      items_ar:["موقع واحد مخصص","متجاوب مع الجوال","وضع داكن وفاتح","محسّن للسيو","تعديلات مجانية","تسليم خلال 24–72 ساعة"],
+      cta_en:"Contact for Price",cta_ar:"تواصل للسعر",hot_label:""
+    },
+    {
+      emoji:"💥",hot:true,
+      en_h:"Multi-Project Bundle",ar_h:"باقة متعددة المشاريع",
+      en_sub:"Best value — save on every project",ar_sub:"أفضل قيمة — وفّر على كل مشروع",
+      items_en:["2–5 custom websites","Progressive discount per site","All features included","Priority delivery","Dedicated revisions","Bundle pricing = big savings"],
+      items_ar:["من 2 إلى 5 مواقع مخصصة","خصم تصاعدي لكل موقع","جميع المميزات مشمولة","أولوية في التسليم","مراجعات مخصصة","سعر الباقة = توفير كبير"],
+      cta_en:"Get Bundle Offer",cta_ar:"احصل على عرض الباقة",hot_label:"Best Deal"
+    },
+    {
+      emoji:"🏢",hot:false,
+      en_h:"Company / Team Plan",ar_h:"خطة الشركات والفرق",
+      en_sub:"For agencies, teams & creators",ar_sub:"للوكالات والفرق والمبدعين",
+      items_en:["Full website suite","Custom pricing per project","Ongoing support","Multi-language builds","Team collaboration","Flexible timeline"],
+      items_ar:["مجموعة مواقع كاملة","تسعير مخصص لكل مشروع","دعم مستمر","بناء متعدد اللغات","تعاون مع الفريق","جدول زمني مرن"],
+      cta_en:"Let's Discuss",cta_ar:"نتكلم تفاصيل",hot_label:""
+    }
+  ],
+  bundle_en:'<strong>💥 Bundle Discount Available</strong> — Order 2 or more websites and get a progressive discount. Custom pricing based on project size and features. <a href="#contact" style="color:var(--accent);text-decoration:none;">Contact me</a> to get your personalized quote.',
+  bundle_ar:'<strong>💥 خصم الباقات متاح</strong> — اطلب موقعين أو أكثر واحصل على خصم تصاعدي. تسعير مخصص حسب حجم المشروع ومميزاته. <a href="#contact" style="color:var(--accent);text-decoration:none;">تواصل معي</a> للحصول على عرض سعر.',
+  projects:[
+    {name:"Atlas Architects",url:"https://spontaneous-faun-992350.netlify.app/",en:"Professional architecture firm site with portfolio showcase & project gallery.",ar:"موقع شركة معمارية احترافي مع معرض أعمال.",cat:"business"},
+    {name:"Azure Palace",url:"https://dainty-blini-c535b1.netlify.app/",en:"Luxury hospitality brand with elegant dark aesthetic.",ar:"علامة تجارية فاخرة للضيافة بتصميم داكن أنيق.",cat:"business"},
+    {name:"Beatcore Music",url:"https://melodious-cocada-b597b8.netlify.app/",en:"Music producer portfolio with audio-reactive design.",ar:"بورتفوليو منتج موسيقي بتصميم تفاعلي مع الصوت.",cat:"creative"},
+    {name:"Cineverse",url:"https://stellular-youtiao-fcb12f.netlify.app/",en:"Cinema & streaming platform with cinematic dark UI.",ar:"منصة سينما وبث بواجهة سينمائية داكنة.",cat:"creative"},
+    {name:"Crypto-X",url:"https://luminous-blini-8bd9fb.netlify.app/",en:"Cryptocurrency dashboard with live market overview.",ar:"لوحة تداول عملات رقمية مع نظرة على السوق.",cat:"ai"},
+    {name:"Galaxion",url:"https://chipper-pudding-707566.netlify.app/",en:"Space-themed platform with particle effects & cosmic design.",ar:"منصة بتصميم فضائي مع تأثيرات جسيمات وجماليات كونية.",cat:"creative"},
+    {name:"Iron Edge",url:"https://classy-belekoy-3eeea8.netlify.app/",en:"Fitness & gym brand with bold typography and energy.",ar:"علامة لياقة بدنية بطباعة جريئة وطاقة عالية.",cat:"business"},
+    {name:"Medix AI",url:"https://wonderful-speculoos-007c70.netlify.app/",en:"AI-powered healthcare platform with clinical clean design.",ar:"منصة رعاية صحية بالذكاء الاصطناعي بتصميم طبي نظيف.",cat:"ai"},
+    {name:"Meme Planet",url:"https://lighthearted-mermaid-a80c3a.netlify.app/",en:"Viral meme community platform with fun social interface.",ar:"منصة ميمز ومجتمع ترفيهي بواجهة اجتماعية مرحة.",cat:"creative"},
+    {name:"NeuroFlow AI",url:"https://calm-cannoli-c410a0.netlify.app/",en:"Neural network SaaS with AI workflow builder & data viz.",ar:"منصة شبكة عصبية بأدوات AI وتصور بيانات.",cat:"ai"},
+    {name:"Nexus Arena",url:"https://roaring-licorice-cabe22.netlify.app/",en:"Cyberpunk gaming platform with neon aesthetics.",ar:"منصة ألعاب سايبربانك بجماليات نيون متقنة.",cat:"creative"},
+    {name:"Nova Home",url:"https://preeminent-lebkuchen-116a2c.netlify.app/",en:"Smart home tech brand with minimalist product showcase.",ar:"علامة تجارية للمنازل الذكية بعرض منتجات بسيط.",cat:"business"},
+    {name:"Orbital University",url:"https://lustrous-sawine-4bcd7a.netlify.app/",en:"Online education platform with courses & student portal.",ar:"منصة تعليمية إلكترونية بدورات وبوابة الطلاب.",cat:"education"},
+    {name:"Portfolio",url:"https://stirring-lily-137af5.netlify.app/",en:"Personal creative portfolio with interactive project showcase.",ar:"بورتفوليو شخصي إبداعي مع عرض تفاعلي للمشاريع.",cat:"creative"},
+    {name:"Royal Flame",url:"https://keen-pie-2da33d.netlify.app/",en:"Premium brand with rich textures and luxury positioning.",ar:"علامة تجارية فاخرة بملمس غني وتموضع فاخر.",cat:"business"},
+    {name:"SkillNova Academy",url:"https://quiet-otter-8cad99.netlify.app/",en:"Skills training platform with course catalog & learning paths.",ar:"منصة تدريب مهارات بكتالوج دورات ومسارات تعلم.",cat:"education"},
+    {name:"Veloce Motors",url:"https://tubular-macaron-928d6a.netlify.app/",en:"Automotive brand with performance-focused vehicle showcase.",ar:"علامة سيارات بعرض مركبات يركز على الأداء.",cat:"business"},
+    {name:"Velora Fashion",url:"https://heartfelt-sunburst-dfe7e3.netlify.app/",en:"Luxury fashion brand with editorial drops & visuals.",ar:"علامة أزياء فاخرة بعروض تحريرية وصور احترافية.",cat:"business"},
+    {name:"VisionForge AI",url:"https://sparkling-crumble-63c950.netlify.app/",en:"AI image generation platform with creative gallery.",ar:"منصة توليد صور بالذكاء الاصطناعي مع معرض إبداعي.",cat:"ai"},
+    {name:"BIMZ Platform",url:"https://bimzlog.vercel.app/",en:"MEP engineering hub — LISP scripts, Dynamo, Revit & AI tools.",ar:"منصة هندسة MEP — سكريبتات LISP ودايناموا وريفيت وأدوات AI.",cat:"ai"},
+    {name:"Noor Al Islam Academy",url:"https://nooralislamacademy.github.io/nooralislam/",en:"Bilingual Quran learning academy with course offerings.",ar:"أكاديمية قرآن كريم ثنائية اللغة مع دورات متنوعة.",cat:"education"}
+  ],
+  catLabels:{ai:{en:"AI & Tech",ar:"AI والتقنية"},business:{en:"Business",ar:"الأعمال"},creative:{en:"Creative",ar:"إبداعي"},education:{en:"Education",ar:"تعليمي"}},
+  catColors:{ai:"#00E5FF",business:"#F59E0B",creative:"#A78BFA",education:"#34D399"}
+};
+
+/* ===== STATE ===== */
+let lang = "en", theme = "dark", filter = "all", search = "";
+
+/* ===== RENDER SERVICES ===== */
+function renderServices(){
+  document.getElementById("servicesWrap").innerHTML = LANG.services.map(s=>`<div class="stag">${s[lang]}</div>`).join("");
+}
+
+/* ===== RENDER WHY ===== */
+function renderWhy(){
+  document.getElementById("whyList").innerHTML = LANG.why.map(w=>`
+    <div class="why-item"><span class="why-check">✔</span><span>${w[lang]}</span></div>`).join("");
+}
+
+/* ===== RENDER FEATURES ===== */
+function renderFeatures(){
+  document.getElementById("featGrid").innerHTML = LANG.features.map(f=>`
+    <div class="feat-card">
+      <div class="feat-icon">${f.icon}</div>
+      <h3>${f[lang+"_h"]}</h3>
+      <p>${f[lang+"_p"]}</p>
+    </div>`).join("");
+}
+
+/* ===== RENDER OFFERS ===== */
+function renderOffers(){
+  document.getElementById("offersGrid").innerHTML = LANG.offers.map(o=>`
+    <div class="offer-card${o.hot?" hot":""}">
+      ${o.hot?`<div class="hot-badge">${o.hot_label}</div>`:""}
+      <div class="offer-emoji">${o.emoji}</div>
+      <h3>${o[lang+"_h"]}</h3>
+      <p class="offer-sub">${o[lang+"_sub"]}</p>
+      <ul class="offer-list">${o["items_"+lang].map(i=>`<li>${i}</li>`).join("")}</ul>
+      <a href="#contact" class="${o.hot?"offer-cta-main":"offer-cta-ghost"}">${o["cta_"+lang]}</a>
+    </div>`).join("");
+  document.getElementById("bundleNote").innerHTML = LANG["bundle_"+lang];
+}
+
+/* ===== RENDER GRID ===== */
+function renderGrid(){
+  const filtered = LANG.projects.filter(p=>{
+    const fMatch = filter==="all" || p.cat===filter;
+    const sMatch = p.name.toLowerCase().includes(search.toLowerCase()) || p[lang].toLowerCase().includes(search.toLowerCase());
+    return fMatch && sMatch;
+  });
+  document.getElementById("navCnt").textContent = filtered.length+" "+(lang==="ar"?"مشاريع":"Projects");
+  if(!filtered.length){
+    document.getElementById("grid").innerHTML=`<div class="no-res">${lang==="ar"?"لا توجد نتائج":"No results found"}</div>`;
+    return;
+  }
+  document.getElementById("grid").innerHTML = filtered.map((p,i)=>{
+    const col = LANG.catColors[p.cat]||"#00E5FF";
+    const catLabel = LANG.catLabels[p.cat]?LANG.catLabels[p.cat][lang]:p.cat;
+    return `
+    <div class="card" style="animation-delay:${i*.04}s">
+      <div class="card-prev">
+        <iframe src="${p.url}" loading="lazy" title="${p.name}"></iframe>
+        <div class="card-prev-ov"></div>
+        <div class="card-lbl">${lang==="ar"?"معاينة حية":"Live Preview"}</div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat" style="color:${col}">${catLabel}</div>
+        <div class="card-title">${p.name}</div>
+        <div class="card-desc">${p[lang]}</div>
+        <div class="card-foot">
+          <a class="card-link" href="${p.url}" target="_blank" style="color:${col};border-color:${col}33;background:${col}0D">
+            ${lang==="ar"?"زيارة الموقع":"Visit Site"}
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+          <span class="card-num">${String(i+1).padStart(2,"0")}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+/* ===== TRANSLATE STATIC ===== */
+function translateStatic(){
+  document.querySelectorAll("[data-en]").forEach(el=>{
+    const val = el.getAttribute("data-"+lang);
+    if(val) el.innerHTML = val;
+  });
+  document.querySelectorAll("[data-en-placeholder]").forEach(el=>{
+    el.placeholder = el.getAttribute("data-"+lang+"-placeholder")||el.placeholder;
+  });
+  document.querySelectorAll(".ff select option").forEach(opt=>{
+    const val = opt.getAttribute("data-"+lang);
+    if(val) opt.textContent = val;
+  });
+}
+
+/* ===== RENDER ALL ===== */
+function renderAll(){
+  translateStatic();
+  renderServices();
+  renderWhy();
+  renderFeatures();
+  renderOffers();
+  renderGrid();
+}
+
+/* ===== LANG TOGGLE ===== */
+function toggleLang(){
+  lang = lang==="en"?"ar":"en";
+  const html = document.documentElement;
+  document.getElementById("langLbl").textContent = lang==="ar"?"English":"عربي";
+  html.lang = lang;
+  html.dir = lang==="ar"?"rtl":"ltr";
+  document.body.classList.toggle("ar", lang==="ar");
+  renderAll();
+}
+
+/* ===== THEME TOGGLE ===== */
+function toggleTheme(){
+  theme = theme==="dark"?"light":"dark";
+  document.documentElement.setAttribute("data-theme",theme);
+  const ico = document.getElementById("thIco");
+  const lbl = document.getElementById("thLbl");
+  if(theme==="light"){
+    ico.innerHTML='<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>';
+    lbl.textContent = lang==="ar"?"داكن":"Dark";
+  } else {
+    ico.innerHTML='<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+    lbl.textContent = lang==="ar"?"فاتح":"Light";
+  }
+}
+
+/* ===== FILTER ===== */
+document.querySelectorAll(".filt").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".filt").forEach(b=>b.classList.remove("on"));
+    btn.classList.add("on");
+    filter = btn.dataset.f;
+    renderGrid();
+  });
+});
+document.getElementById("sInp").addEventListener("input",e=>{search=e.target.value;renderGrid();});
+
+/* ===== GOTO ===== */
+function goto(id){document.getElementById(id)?.scrollIntoView({behavior:"smooth"});}
+
+/* ===== WHATSAPP ===== */
+function sendWA(){
+  const name = document.getElementById("fn").value||"?";
+  const type = document.getElementById("ft").value;
+  const msg = document.getElementById("fm").value||"?";
+  const text = `Hi Ziad! I'm ${name}.\nProject type: ${type}\n\n${msg}`;
+  window.open("https://wa.me/201030718566?text="+encodeURIComponent(text),"_blank");
+}
+
+/* ===== CURSOR ===== */
+const cur = document.getElementById("cur"), curR = document.getElementById("curR");
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY;});
+(function loop(){
+  cur.style.left=mx+"px";cur.style.top=my+"px";
+  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+  curR.style.left=rx+"px";curR.style.top=ry+"px";
+  requestAnimationFrame(loop);
+})();
+document.querySelectorAll("a,button,.card").forEach(el=>{
+  el.addEventListener("mouseenter",()=>{cur.style.width="18px";cur.style.height="18px";curR.style.width="48px";curR.style.height="48px";});
+  el.addEventListener("mouseleave",()=>{cur.style.width="10px";cur.style.height="10px";curR.style.width="36px";curR.style.height="36px";});
+});
+
+/* ===== SCROLL REVEAL ===== */
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");obs.unobserve(e.target);}});
+},{threshold:.08});
+document.querySelectorAll(".fu").forEach(el=>obs.observe(el));
+
+/* ===== INIT ===== */
+renderAll();
+</script>
+</body>
+</html>
