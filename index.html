@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ziad Anter — Web Design Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#060A0F;--surface:#0C1219;--card:#0F1724;--border:rgba(255,255,255,0.07);
@@ -20,8 +20,8 @@
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;cursor:none;transition:background .4s,color .4s;}
-body.ar,body.ar *{font-family:'Cairo',sans-serif !important;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;overflow-x:hidden;cursor:none;transition:background .4s,color .4s;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+body.ar,body.ar *{font-family:'Cairo','Segoe UI',Tahoma,sans-serif !important;-webkit-font-smoothing:antialiased;}
 .cursor{width:10px;height:10px;background:var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s;mix-blend-mode:difference;}
 .cursor-ring{width:36px;height:36px;border:1.5px solid rgba(0,229,255,0.45);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.35;pointer-events:none;z-index:1;}
@@ -33,7 +33,7 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 40px;display:flex;justify-content:space-between;align-items:center;background:var(--nav-bg);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:background .4s;}
-.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--text);}
+.nav-logo{font-family:'Syne','Arial Black',sans-serif;font-weight:800;font-size:1.25rem;color:var(--text);}
 .nav-logo span{color:var(--accent);}
 .nav-links{display:flex;gap:2px;}
 .nav-btn{background:none;border:none;padding:7px 13px;border-radius:8px;color:var(--muted);font-size:.82rem;font-family:inherit;cursor:none;transition:all .2s;}
@@ -42,15 +42,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 40px;display:fl
 .toggle-pill{display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:100px;border:1px solid var(--border);background:var(--card);color:var(--muted);font-size:.78rem;font-family:inherit;cursor:none;transition:all .2s;white-space:nowrap;}
 .toggle-pill:hover{border-color:var(--accent);color:var(--accent);}
 .toggle-pill svg{width:13px;height:13px;}
-.nav-count{font-family:'Syne',sans-serif;font-size:.8rem;color:var(--accent);background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.2);padding:7px 14px;border-radius:100px;}
+.nav-count{font-family:'Syne','Arial Black',sans-serif;font-size:.8rem;color:var(--accent);background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.2);padding:7px 14px;border-radius:100px;}
 
 /* HERO */
 .hero{position:relative;z-index:2;padding:140px 40px 70px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center;}
 .badge{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;color:var(--green);letter-spacing:.15em;text-transform:uppercase;margin-bottom:22px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.25);padding:6px 14px;border-radius:100px;}
 .badge-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:blink 2s infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
-h1.hero-title{font-family:'Syne',sans-serif;font-size:clamp(2.8rem,5vw,4.8rem);font-weight:800;line-height:.97;letter-spacing:-.03em;margin-bottom:22px;}
-h1.hero-title .outline{color:transparent;-webkit-text-stroke:1.5px var(--accent);}
+h1.hero-title{font-family:'Syne','Arial Black',sans-serif;font-size:clamp(2.4rem,5vw,4.8rem);font-weight:800;line-height:1.0;letter-spacing:-.02em;margin-bottom:22px;word-break:break-word;}
+h1.hero-title .outline{color:transparent;-webkit-text-stroke:1.5px var(--accent);display:block;}
 .hero-sub{font-size:1rem;color:var(--muted);line-height:1.85;font-weight:300;margin-bottom:32px;max-width:440px;}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
 .btn-main{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:var(--accent);color:#000;font-weight:700;font-size:.9rem;border-radius:10px;text-decoration:none;font-family:inherit;cursor:none;border:none;transition:all .25s;}
@@ -62,14 +62,14 @@ h1.hero-title .outline{color:transparent;-webkit-text-stroke:1.5px var(--accent)
 .mini-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;transition:transform .3s,border-color .3s;}
 .mini-card:hover{transform:translateX(-5px);border-color:var(--border2,rgba(0,229,255,0.2));}
 .mini-icon{font-size:1.3rem;margin-bottom:10px;}
-.mini-card h3{font-family:'Syne',sans-serif;font-size:.92rem;font-weight:700;margin-bottom:5px;}
+.mini-card h3{font-family:'Syne','Arial Black',sans-serif;font-size:.92rem;font-weight:700;margin-bottom:5px;}
 .mini-card p{font-size:.78rem;color:var(--muted);line-height:1.6;}
 
 /* STATS */
 .stats-row{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;max-width:1120px;margin:0 auto 80px;margin-left:40px;margin-right:40px;}
 .stat{background:var(--surface);padding:32px;transition:background .3s;}
 .stat:hover{background:var(--card);}
-.stat-n{font-family:'Syne',sans-serif;font-size:2.8rem;font-weight:800;color:var(--accent);line-height:1;margin-bottom:5px;}
+.stat-n{font-family:'Syne','Arial Black',sans-serif;font-size:2.8rem;font-weight:800;color:var(--accent);line-height:1;margin-bottom:5px;}
 .stat-l{font-size:.75rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;}
 
 /* SECTION */
@@ -78,7 +78,7 @@ h1.hero-title .outline{color:transparent;-webkit-text-stroke:1.5px var(--accent)
 .sec-tag::before{content:'';width:28px;height:1px;background:var(--accent);}
 body.ar .sec-tag::before{display:none;}
 body.ar .sec-tag::after{content:'';width:28px;height:1px;background:var(--accent);}
-.sec-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:800;letter-spacing:-.02em;margin-bottom:10px;}
+.sec-title{font-family:'Syne','Arial Black',sans-serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:800;letter-spacing:-.02em;margin-bottom:10px;}
 .sec-desc{color:var(--muted);font-size:.93rem;line-height:1.8;max-width:540px;font-weight:300;margin-bottom:44px;}
 
 /* ABOUT */
@@ -91,7 +91,7 @@ body.ar .sec-tag::after{content:'';width:28px;height:1px;background:var(--accent
 .stag::before{content:'→';color:var(--accent);font-size:.72rem;flex-shrink:0;}
 body.ar .stag::before{content:'←';}
 .why-box{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:28px;}
-.why-title{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:var(--accent);margin-bottom:18px;}
+.why-title{font-family:'Syne','Arial Black',sans-serif;font-size:.95rem;font-weight:700;color:var(--accent);margin-bottom:18px;}
 .why-item{display:flex;align-items:flex-start;gap:10px;font-size:.83rem;padding:10px 0;border-bottom:1px solid var(--border);}
 .why-item:last-child{border-bottom:none;}
 .why-check{color:var(--green);font-size:.9rem;margin-top:1px;flex-shrink:0;}
@@ -103,7 +103,7 @@ body.ar .stag::before{content:'←';}
 .feat-card:hover{border-color:rgba(0,229,255,0.3);transform:translateY(-4px);box-shadow:var(--glow);}
 .feat-card:hover::after{opacity:1;}
 .feat-icon{width:46px;height:46px;border-radius:12px;background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.18);display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:1.3rem;}
-.feat-card h3{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:7px;}
+.feat-card h3{font-family:'Syne','Arial Black',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:7px;}
 .feat-card p{font-size:.8rem;color:var(--muted);line-height:1.65;}
 
 /* OFFERS */
@@ -114,7 +114,7 @@ body.ar .stag::before{content:'←';}
 .hot-badge{position:absolute;top:18px;right:18px;font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:100px;background:var(--accent);color:#000;}
 body.ar .hot-badge{right:auto;left:18px;}
 .offer-emoji{font-size:2rem;margin-bottom:14px;}
-.offer-card h3{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:800;margin-bottom:6px;}
+.offer-card h3{font-family:'Syne','Arial Black',sans-serif;font-size:1.25rem;font-weight:800;margin-bottom:6px;}
 .offer-sub{font-size:.8rem;color:var(--muted);margin-bottom:22px;line-height:1.6;}
 .offer-list{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:26px;}
 .offer-list li{display:flex;align-items:center;gap:9px;font-size:.82rem;color:var(--muted);}
@@ -137,22 +137,28 @@ body.ar .hot-badge{right:auto;left:18px;}
 .s-inp::placeholder{color:var(--muted);}
 .s-ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px;}
-.card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:transform .3s cubic-bezier(.34,1.56,.64,1),border-color .3s,box-shadow .3s;cursor:none;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:transform .3s cubic-bezier(.34,1.56,.64,1),border-color .3s,box-shadow .3s;cursor:none;text-decoration:none;color:inherit;display:block;}
 .card:hover{transform:translateY(-6px);border-color:rgba(0,229,255,0.3);box-shadow:0 20px 60px rgba(0,0,0,.3),var(--glow);}
 .card-prev{position:relative;height:185px;overflow:hidden;background:var(--surface);}
-.card-prev iframe{width:200%;height:200%;transform:scale(.5);transform-origin:top left;border:none;pointer-events:none;}
-.card-prev-ov{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,var(--card));}
+.card-prev img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .5s ease;display:block;}
+.card:hover .card-prev img{transform:scale(1.05);}
+.card-prev-ov{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,var(--card));}
+.card-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,var(--surface),var(--card));}
+.card-placeholder-icon{opacity:.1;font-size:2.5rem;}
+.card-placeholder-txt{font-family:'Syne','Arial Black',sans-serif;font-size:.72rem;font-weight:700;opacity:.2;letter-spacing:.1em;text-transform:uppercase;}
 .card-lbl{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.65);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.08);border-radius:5px;padding:3px 9px;font-size:.65rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;}
+.card-ext{position:absolute;top:10px;left:10px;width:28px;height:28px;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.1);border-radius:6px;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;}
+.card:hover .card-ext{opacity:1;}
 .card-body{padding:16px 20px 20px;}
 .card-cat{font-size:.67rem;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:5px;}
-.card-title{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:5px;}
+.card-title{font-family:'Syne','Arial Black',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:5px;}
 .card-desc{font-size:.78rem;color:var(--muted);line-height:1.65;margin-bottom:16px;font-weight:300;}
 .card-foot{display:flex;align-items:center;justify-content:space-between;}
 .card-link{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:600;color:var(--accent);text-decoration:none;padding:7px 14px;border:1px solid rgba(0,229,255,0.22);border-radius:8px;background:rgba(0,229,255,0.06);transition:all .2s;cursor:none;}
 .card-link:hover{background:rgba(0,229,255,0.14);border-color:var(--accent);gap:10px;}
 .card-link svg{transition:transform .2s;}
 .card-link:hover svg{transform:translate(2px,-2px);}
-.card-num{font-family:'Syne',sans-serif;font-size:.7rem;color:rgba(255,255,255,0.1);font-weight:700;}
+.card-num{font-family:'Syne','Arial Black',sans-serif;font-size:.7rem;color:rgba(255,255,255,0.1);font-weight:700;}
 [data-theme="light"] .card-num{color:rgba(0,0,0,0.12);}
 .no-res{grid-column:1/-1;text-align:center;padding:60px;color:var(--muted);}
 .hidden{display:none!important;}
@@ -167,10 +173,10 @@ body.ar .c-item:hover{transform:translateX(-4px);}
 .c-item strong{font-size:.9rem;font-weight:500;}
 .resp-row{display:flex;gap:12px;margin-top:4px;}
 .resp-box{flex:1;text-align:center;padding:14px;background:var(--card);border:1px solid var(--border);border-radius:10px;}
-.resp-n{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:var(--accent);}
+.resp-n{font-family:'Syne','Arial Black',sans-serif;font-size:1.3rem;font-weight:800;color:var(--accent);}
 .resp-l{font-size:.68rem;color:var(--muted);}
 .cf{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:12px;}
-.cf h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:2px;}
+.cf h3{font-family:'Syne','Arial Black',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:2px;}
 .cf p{font-size:.8rem;color:var(--muted);margin-bottom:6px;}
 .ff{display:flex;flex-direction:column;gap:5px;}
 .ff label{font-size:.75rem;color:var(--muted);}
@@ -293,8 +299,8 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:28
   <div class="sec-title" data-en="About Me" data-ar="عني">About Me</div>
   <div class="about-grid">
     <div>
-      <p class="about-p" data-en="&lt;strong&gt;Hi, I'm Ziad Anter&lt;/strong&gt; — a creative web designer and developer specialized in building modern, fast, and professional websites. I create websites that combine clean design, smooth performance, responsive layouts, and smart user experience to help brands, businesses, and creators stand out online." data-ar="&lt;strong&gt;مرحباً، أنا زياد عنتر&lt;/strong&gt; — مصمم ومطور مواقع متخصص في بناء مواقع عصرية وسريعة ومحترفة. أصمم مواقع تجمع بين التصميم النظيف والأداء السلس والاستجابة الكاملة وتجربة مستخدم ذكية.">&lt;strong&gt;Hi, I'm Ziad Anter&lt;/strong&gt; — a creative web designer and developer specialized in building modern, fast, and professional websites. I create websites that combine clean design, smooth performance, responsive layouts, and smart user experience to help brands, businesses, and creators stand out online.</p>
-      <p class="about-p" data-en="I work on a wide range of web projects — from simple landing pages to full interactive platforms — always with attention to detail, performance, and clean code." data-ar="أعمل على مجموعة واسعة من مشاريع الويب — من الصفحات البسيطة إلى المنصات التفاعلية الكاملة — دائماً مع الاهتمام بالتفاصيل والأداء والكود النظيف.">I work on a wide range of web projects — from simple landing pages to full interactive platforms — always with attention to detail, performance, and clean code.</p>
+      <p class="about-p" id="aboutP1"><strong>Hi, I'm Ziad Anter</strong> — a creative web designer and developer specialized in building modern, fast, and professional websites. I create websites that combine clean design, smooth performance, responsive layouts, and smart user experience to help brands, businesses, and creators stand out online.</p>
+      <p class="about-p" id="aboutP2">I work on a wide range of web projects — from simple landing pages to full interactive platforms — always with attention to detail, performance, and clean code.</p>
       <div class="services-wrap" id="servicesWrap"></div>
     </div>
     <div>
@@ -538,31 +544,52 @@ function renderGrid(){
   document.getElementById("grid").innerHTML = filtered.map((p,i)=>{
     const col = LANG.catColors[p.cat]||"#00E5FF";
     const catLabel = LANG.catLabels[p.cat]?LANG.catLabels[p.cat][lang]:p.cat;
+    const thumb = `https://image.thum.io/get/width/800/crop/600/noanimate/${p.url}`;
     return `
-    <div class="card" style="animation-delay:${i*.04}s">
+    <a class="card" href="${p.url}" target="_blank" rel="noopener" style="animation-delay:${i*.04}s">
       <div class="card-prev">
-        <iframe src="${p.url}" loading="lazy" title="${p.name}"></iframe>
+        <img src="${thumb}" loading="lazy" alt="${p.name}"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="card-placeholder" style="display:none">
+          <div class="card-placeholder-icon">🌐</div>
+          <div class="card-placeholder-txt">${p.name}</div>
+        </div>
         <div class="card-prev-ov"></div>
-        <div class="card-lbl">${lang==="ar"?"معاينة حية":"Live Preview"}</div>
+        <div class="card-lbl">${lang==="ar"?"زيارة الموقع":"Visit Site"}</div>
+        <div class="card-ext">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </div>
       </div>
       <div class="card-body">
         <div class="card-cat" style="color:${col}">${catLabel}</div>
         <div class="card-title">${p.name}</div>
         <div class="card-desc">${p[lang]}</div>
         <div class="card-foot">
-          <a class="card-link" href="${p.url}" target="_blank" style="color:${col};border-color:${col}33;background:${col}0D">
+          <span class="card-link" style="color:${col};border-color:${col}33;background:${col}0D">
             ${lang==="ar"?"زيارة الموقع":"Visit Site"}
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
-          </a>
+          </span>
           <span class="card-num">${String(i+1).padStart(2,"0")}</span>
         </div>
       </div>
-    </div>`;
+    </a>`;
   }).join("");
 }
 
 /* ===== TRANSLATE STATIC ===== */
+const aboutTexts = {
+  p1:{
+    en:"<strong>Hi, I'm Ziad Anter</strong> — a creative web designer and developer specialized in building modern, fast, and professional websites. I create websites that combine clean design, smooth performance, responsive layouts, and smart user experience to help brands, businesses, and creators stand out online.",
+    ar:"<strong>مرحباً، أنا زياد عنتر</strong> — مصمم ومطور مواقع متخصص في بناء مواقع عصرية وسريعة ومحترفة. أصمم مواقع تجمع بين التصميم النظيف والأداء السلس والاستجابة الكاملة وتجربة مستخدم ذكية."
+  },
+  p2:{
+    en:"I work on a wide range of web projects — from simple landing pages to full interactive platforms — always with attention to detail, performance, and clean code.",
+    ar:"أعمل على مجموعة واسعة من مشاريع الويب — من الصفحات البسيطة إلى المنصات التفاعلية الكاملة — دائماً مع الاهتمام بالتفاصيل والأداء والكود النظيف."
+  }
+};
 function translateStatic(){
+  document.getElementById("aboutP1").innerHTML = aboutTexts.p1[lang];
+  document.getElementById("aboutP2").innerHTML = aboutTexts.p2[lang];
   document.querySelectorAll("[data-en]").forEach(el=>{
     const val = el.getAttribute("data-"+lang);
     if(val) el.innerHTML = val;
